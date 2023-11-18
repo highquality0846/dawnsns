@@ -10,17 +10,6 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -46,13 +35,30 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data)   //　8.7
     {
-        return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'mail' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:4|confirmed',
-        ]);
+        $rules = [
+            'username' => 'required | between:4,12',
+            'mail' => 'required|email|between:4,50|unique:users',
+            'password' => 'required|between:4,12|confirmed|alpha_dash|unique:users', 
+        ];
+        $messages = [
+            'username.required' => '入力必須です。',
+            'username.between' => '４文字以上１２文字以下で入力してください。',
+            'mail.required' => '入力必須です。',
+            'mail.email' => 'メールアドレスではありません。',
+            'mail.between' => '４文字以上５０文字以下で入力してください。',
+            'mail.unique' => '登録済のメールアドレスです。',
+            'password.required' => '入力必須です。',
+            'password.between' => '４文字以上１２文字以下で入力してください。',
+            'password.confirmed' => 'パスワードと確認用パスワードが一致しません。',
+            'password.alpha_dash' => '英数字で入力してください。',
+            'password.unique' => '登録済のパスワードです。',
+            'password.confirmed' => '間違えんなよ。。。',
+        ];
+        return
+
+        $validator = validator::make($data,$rules,$messages);
     }
 
     /**
@@ -61,6 +67,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+//
+
     protected function create(array $data)
     {
         return User::create([
@@ -78,9 +87,15 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-
-            $this->create($data);
-            return redirect('added');
+            $name = $request->input('username'); //ヴァリデータ追加部分
+//ヴァリデータ追加部分
+            $validator=$this->validator($data);
+              if($validator->fails()){
+                return redirect('/register')->withErrors($validator)
+                ->withInput();}
+//ここまで
+             $this->create($data);
+            return redirect('added')->with('name',$name); //ヴァリデータ追加部分
         }
         return view('auth.register');
     }

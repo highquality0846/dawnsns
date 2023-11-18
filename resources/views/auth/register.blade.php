@@ -2,6 +2,30 @@
 
 @section('content')
 
+@if($errors->has('username'))
+    <div class="error">
+        <p>{{ $errors->first('username') }}</p>
+    </div>
+@endif
+
+@if($errors->has('mail'))
+    <div class="error">
+        <p>{{ $errors->first('mail') }}</p>
+    </div>
+@endif
+
+@if($errors->has('password'))
+    <div class="error">
+        <p>{{ $errors->first('password') }}</p>
+    </div>
+@endif
+
+@if($errors->has('password_confirmation'))
+    <div class="error">
+        <p>{{ $errors->first('password-confirmation') }}</p>
+    </div>
+@endif
+
 {!! Form::open() !!}
 
 <h2>新規ユーザー登録</h2>
@@ -16,7 +40,7 @@
 {{ Form::text('password',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::text('password_confirmation',null,['class' => 'input']) }}
 
 {{ Form::submit('登録') }}
 
