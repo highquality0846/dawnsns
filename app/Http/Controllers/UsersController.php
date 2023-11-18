@@ -20,6 +20,7 @@ class UsersController extends Controller
       $word = $request -> input('search');                  //formのname属性=search
       if (isset($request->search)) {                        
         $users = DB::table('users')
+          ->where(Auth::id())
           ->where('username','like',"%".$word."%")
           ->select('id','username','images')
           ->get();} 
@@ -31,7 +32,8 @@ class UsersController extends Controller
       $followings = DB::table('follows')
           ->where('follower', Auth::id()) 
           ->pluck('follow');                
-      return view('users.search',['users'=>$users,'word'=>$word,'followings'=>$followings]);}
+      return view('users.search',['users'=>$users,'word'=>$word,'followings'=>$followings]);
+    }
 
 
     public function follow(Request $request){              //【フォロー機能】

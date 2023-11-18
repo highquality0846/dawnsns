@@ -11,7 +11,7 @@
 
 @foreach ($users as $user)           
 <div>
-  <img src='../../../public/images/dawn.png' alt="icon"> <!--【ユーザーアイコン】-->
+  <img src="/images/{{ $user -> images }}" alt="icon"> <!--【ユーザーアイコン】-->
   {{ $user->username}}  
   @if($followings ->contains($user->id))  <!-- あなたの番号が$followingsにcontainsだったら -->
     <form action="delete" method="post"> <!--【フォロー解除ボタン】-->
