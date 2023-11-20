@@ -10,8 +10,9 @@ class FollowsController extends Controller
 {
     
     public function followList(){           //フォローリスト
-      $images = DB::table("users")
-        ->select("id","images")
+      $images = DB::table('users')
+        ->join('follows','users.id','=','follows.follow')     //DBの結合
+        ->where('follower',Auth::id())
         ->get();
         return view('follows.followList',["images"=>$images]); 
     }
