@@ -12,7 +12,9 @@
 </div>
 
 <div>
-
+@foreach($images as $posts)
+  {{$posts->posts}}
+@endforeach
 </div>
 
 
