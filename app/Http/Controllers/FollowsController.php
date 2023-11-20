@@ -13,9 +13,8 @@ class FollowsController extends Controller
       $images = DB::table("users")
         ->select("id","images")
         ->get();
-        return view('follows.followList',["icon"=>$icons,"image"=>$images]);
+        return view('follows.followList',["images"=>$images]); 
     }
-
 
 
     public function followerList(){

@@ -4,10 +4,8 @@
 
 <h1>Follow list</h1>
 
-@foreach($icon as $icons)
+@foreach($images as $image)
 <img src="/images/{{ $image -> images }}" alt="icon">
-
-
 
 @endforeach
 
