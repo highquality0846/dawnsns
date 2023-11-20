@@ -2,12 +2,24 @@
 
 @section('content')
 
-<h1>Follow list</h1>
+<h1>Follow list</h1>  <!--【タイトル】-->
 
-@foreach($images as $image)
-<img src="/images/{{ $image -> images }}" alt="icon">
-{{$image->follow}}
+<div>
+  @foreach($images as $image)<!--【フォロー中アイコン一覧】-->
+    <img src="/images/{{ $image -> images }}" alt="icon">
+    {{$image->follow}}
+  @endforeach
+</div>
 
-@endforeach
+<div>
+
+</div>
+
+
+
+
+
+
+
 
 @endsection
