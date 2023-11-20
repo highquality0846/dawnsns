@@ -20,12 +20,13 @@ class UsersController extends Controller
       $word = $request -> input('search');                  //formのname属性=search
       if (isset($request->search)) {                        
         $users = DB::table('users')
-          ->where(Auth::id())
+          ->where('id', '<>', Auth::id())                   //ログイン中のid以外
           ->where('username','like',"%".$word."%")
           ->select('id','username','images')
           ->get();} 
       else {
         $users = DB::table('users')
+          ->where('id', '<>', Auth::id())                   
           ->select('id','username','images')
           ->get(); 
       } 

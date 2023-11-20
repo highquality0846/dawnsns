@@ -39,7 +39,7 @@ Route::get('/profile','UsersController@profile');
 Route::get('/search','UsersController@search');              //ユーザー検索ボタンでsearch.blade.phpへ
 Route::post('/search','UsersController@search');             //user検索ボタンを押下する→UsersController@search
 
-Route::get('/follow-list','PostsController@index');
+Route::get('/follow-list','followsController@followList');    //フォローリストへ
 Route::get('/follower-list','PostsController@index');
 
 Route::post('/tweet','PostsController@tweet');
