@@ -40,7 +40,7 @@ Route::get('/search','UsersController@search');              //ユーザー検�
 Route::post('/search','UsersController@search');             //user検索ボタンを押下する→UsersController@search
 
 Route::get('/follow-list','followsController@followList');    //フォローリストへ
-Route::get('/follower-list','PostsController@index');
+Route::get('/follower-list','followsController@followerList'); //フォロワーリストへ
 
 Route::post('/tweet','PostsController@tweet');
 

@@ -2,6 +2,6 @@
 
 @section('content')
 
-
+プロフィール画面！
 
 @endsection
