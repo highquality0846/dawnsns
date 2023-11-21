@@ -12,16 +12,18 @@ class UsersController extends Controller
 
 
     public function profile(Request $request){                              //【プロフィール機能】
-      $id = $request -> input('id');
+      $id = $request->input('id');
       dd($id);
-     
-      return view('users.profile');}
-
-
+      DB::table('follows')
+        ->join('users','follows.follow','=','users.id')
+        ->select('id','username','images')
+        ->get();
+      return view('users.profile',['id'=>$id]);
+    }
 
 
     public function search(Request $request){               //【検索機能】
-      $word = $request -> input('search');                  //formのname属性=search
+      $word = $request->input('search');                  //formのname属性=search
       if (isset($request->search)) {                        
         $users = DB::table('users')
           ->where('id', '<>', Auth::id())                   //ログイン中のid以外

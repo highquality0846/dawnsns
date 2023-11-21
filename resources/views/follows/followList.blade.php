@@ -7,12 +7,10 @@
 
   @foreach($icons as $icon)             <!--【フォロー中アイコン一覧】-->
     <div style="display:inline-flex">
-      <form action="/profile" method="post">
-        <a href="/profile" neme="id" value="{{ $icon -> id }}">
-          <img src="/images/{{ $icon -> images }}" alt="icon">
-        </a>
-        {{$icon->follow}}               <!-- 分かりやすい様にid設置中 -->
-      </form>
+      <a href="/post/{{$icon->follow}}/profile">
+        <img src="/images/{{ $icon -> images }}" alt="icon">
+      </a>
+    {{$icon->follow}}               <!-- 分かりやすい様にid設置中 -->
     </div>
   @endforeach
 
