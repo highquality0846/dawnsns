@@ -10,10 +10,14 @@ class UsersController extends Controller
 
 {
 
-    //dd(Auth::id());
 
-    public function profile(){
+    public function profile(Request $request){                              //【プロフィール機能】
+      $id = $request -> input('id');
+      dd($id);
+     
       return view('users.profile');}
+
+
 
 
     public function search(Request $request){               //【検索機能】

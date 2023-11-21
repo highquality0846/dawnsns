@@ -18,6 +18,7 @@
     {{$image->follower}} <!-- 分かりやすい様にid設置中 -->
     {{$image->username}}
   </div>
+  {{$image->created_at}}
   {{$image->posts}}
 @endforeach
 </div>
