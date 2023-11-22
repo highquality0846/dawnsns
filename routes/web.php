@@ -34,6 +34,7 @@ Route::get('/top','PostsController@index');
 //ログアウト処理
 Route::get('/logout','Auth\LoginController@logout');
 
+Route::get('/profile','UsersController@profile');
 Route::get('post/{id}/profile','UsersController@profile');
 
 Route::get('/search','UsersController@search');              //ユーザー検索ボタンでsearch.blade.phpへ

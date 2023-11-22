@@ -10,15 +10,20 @@ class UsersController extends Controller
 
 {
 
+    public function user(){                              //【プロフィール機能】  
+      return view('users.profile');
+    }
 
-    public function profile(Request $request){                              //【プロフィール機能】
-      $id = $request->input('id');
-      dd($id);
-      DB::table('follows')
-        ->join('users','follows.follow','=','users.id')
-        ->select('id','username','images')
+
+
+    public function profile($id){                              //【プロフィール機能】
+      $users = DB::table('users')
+        ->where('id',$id)
         ->get();
-      return view('users.profile',['id'=>$id]);
+      $followings = DB::table('follows')
+        ->where('follower', Auth::id()) 
+        ->pluck('follow');   
+      return view('users.profile',['users'=>$users,'followings'=>$followings]);
     }
 
 
