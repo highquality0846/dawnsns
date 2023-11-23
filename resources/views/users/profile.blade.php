@@ -4,7 +4,7 @@
 
 @foreach($user as $user)
   <img src='/images/{{$user->images}}'>
-  <form action='/name' method='POST'>
+  <form action='/update' method='POST' name='update'>
   @csrf
     <label for="name">UserName</label>
     <input type="text" name='name' value='{{$user->username}}'>
