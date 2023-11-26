@@ -8,7 +8,7 @@
   @foreach($icons as $icon)             <!--【フォロー中アイコン一覧】-->
     <div style="display:inline-flex">
       <a href="/post/{{$icon->follow}}/profile">
-        <img src="/images/{{ $icon -> images }}" alt="icon">
+        <img src="/storage/images/{{ $icon -> images }}" alt="icon">
       </a>
     {{$icon->follow}}               <!-- 分かりやすい様にid設置中 -->
     </div>
@@ -19,7 +19,7 @@
 <div>
 @foreach($images as $image)             <!--【投稿一覧】-->
   <div>
-    <a href="/profile"><img src="/images/{{ $image -> images }}" alt="icon"></a>
+    <a href="/profile"><img src="/storage/images/{{ $image -> images }}" alt="icon"></a>
     {{$image->follow}} <!-- 分かりやすい様にid設置中 -->
     {{$image->username}}
   </div>

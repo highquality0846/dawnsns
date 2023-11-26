@@ -1,7 +1,6 @@
 @extends('layouts.login')
 
 @section('content')
-<h2>機能を実装していきましょう。</h2>
 
 <div class='container'>  
   <form action='/tweet' method='post'>     
@@ -30,5 +29,3 @@
 @endforeach
 
 @endsection
-
-１hidden属性で数字を送るか 2urlに載せるか

@@ -3,8 +3,8 @@
 @section('content')
 
 @foreach($user as $user)
-  <img src='/images/{{$user->images}}'>
-  <form action='/update' method='POST' name='update'>
+  <img src='/storage/images/{{$user->images}}'>
+  <form action='/update' method='POST' name='update' enctype="multipart/form-data">
   @csrf
     <label for="name">UserName</label>
     <input type="text" name='name' value='{{$user->username}}'>

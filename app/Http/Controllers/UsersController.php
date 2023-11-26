@@ -10,20 +10,18 @@ class UsersController extends Controller
 
 {
 
-    public function user(){                              //【プロフィール機能】  
-      return view('users.profile');
-    }
 
-
-
-    public function profile($id){                              //【プロフィール機能】
+    public function profile($id){                           //【他ユーザーのプロフィール機能】
       $users = DB::table('users')
         ->where('id',$id)
         ->get();
       $followings = DB::table('follows')
         ->where('follower', Auth::id()) 
-        ->pluck('follow');   
-      return view('users.profile',['users'=>$users,'followings'=>$followings]);
+        ->pluck('follow'); 
+      $posts = DB::table('posts')
+        ->where('user_id',$id)
+        ->get();
+      return view('users.otherProfile',['users'=>$users,'followings'=>$followings,'posts'=>$posts]);
     }
 
 
@@ -43,7 +41,7 @@ class UsersController extends Controller
       } 
       $followings = DB::table('follows')
           ->where('follower', Auth::id()) 
-          ->pluck('follow');                
+          ->pluck('follow');          
       return view('users.search',['users'=>$users,'word'=>$word,'followings'=>$followings]);
     }
 
@@ -56,7 +54,6 @@ class UsersController extends Controller
         'created_at' => now()]);
       return back();
     }
-
 
     public function delete(Request $request){              //【フォロー解除機能】
       $id = $request->input('id');                         

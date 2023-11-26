@@ -11,7 +11,7 @@
 
 @foreach ($users as $user)           
 <div>
-  <img src="/images/{{ $user -> images }}" alt="icon"> <!--【ユーザーアイコン】-->
+  <img src="/storage/images/{{ $user -> images }}" alt="icon"> <!--【ユーザーアイコン】-->
   {{ $user->username}}  
 
   @if($followings ->contains($user->id))  <!-- あなたの番号が$followingsにcontainsだったら -->
