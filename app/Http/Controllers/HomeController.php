@@ -22,7 +22,12 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    { $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+      $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+      return view('home',['follows'=>$follows,'followers'=>$followers]);
     }
 }

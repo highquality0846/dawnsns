@@ -21,7 +21,13 @@ class UsersController extends Controller
       $posts = DB::table('posts')
         ->where('user_id',$id)
         ->get();
-      return view('users.otherProfile',['users'=>$users,'followings'=>$followings,'posts'=>$posts]);
+      $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+      $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+      return view('users.otherProfile',['users'=>$users,'followings'=>$followings,'posts'=>$posts,'follows'=>$follows,'followers'=>$followers]);
     }
 
 
@@ -39,10 +45,16 @@ class UsersController extends Controller
           ->select('id','username','images')
           ->get(); 
       } 
-      $followings = DB::table('follows')
+        $followings = DB::table('follows')
           ->where('follower', Auth::id()) 
-          ->pluck('follow');          
-      return view('users.search',['users'=>$users,'word'=>$word,'followings'=>$followings]);
+          ->pluck('follow'); 
+        $follows = DB::table('follows')
+          ->where('follower',Auth::id())
+          ->count();
+        $followers = DB::table('follows')
+          ->where('follow',Auth::id())
+          ->count();         
+      return view('users.search',['users'=>$users,'word'=>$word,'followings'=>$followings,'follows'=>$follows,'followers'=>$followers]);
     }
 
 

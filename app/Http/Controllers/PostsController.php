@@ -13,12 +13,15 @@ class PostsController extends Controller
       $follows = DB::table('follows')
         ->where('follower',Auth::id())
         ->count();
-        dd($follows);
-      return view('posts.index',['posts'=>$posts]);
+        //dd($follows);
+      $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+      return view('posts.index',['posts'=>$posts,'follows'=>$follows,'followers'=>$followers]);
     }
 
 
-    public function tweet(Request $request){            //投稿フォームに入力された値を取得
+    public function tweet(Request $request){            
       $post = $request->input('post_Text');      
       DB::table('posts')->insert([              
         'posts' => $post,                     

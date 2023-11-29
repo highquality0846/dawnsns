@@ -19,7 +19,13 @@ class FollowsController extends Controller
         ->join('posts','users.id','=','posts.user_id')
         ->where('follower',Auth::id())
         ->get();
-      return view('follows.followList',["images"=>$images,"icons"=>$icons]); 
+      $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+      $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+      return view('follows.followList',["images"=>$images,"icons"=>$icons,'follows'=>$follows,'followers'=>$followers]); 
     }
 
 
@@ -34,6 +40,12 @@ class FollowsController extends Controller
         ->join('posts','users.id','=','posts.user_id')
         ->where('follow',Auth::id())
         ->get();
-      return view('follows.followerList',["images"=>$images,"icons"=>$icons]);
+      $follows = DB::table('follows')
+        ->where('follower',Auth::id())
+        ->count();
+      $followers = DB::table('follows')
+        ->where('follow',Auth::id())
+        ->count();
+      return view('follows.followerList',["images"=>$images,"icons"=>$icons,'follows'=>$follows,'followers'=>$followers]);
     }
 }
