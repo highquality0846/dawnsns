@@ -1,6 +1,8 @@
 @extends('layouts.login')
 
 @section('content')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/js/jquery.js"></script>
 
 <div class='container'>  
   <form action='/tweet' method='post'>     
