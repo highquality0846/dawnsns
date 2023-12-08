@@ -62,6 +62,7 @@
         <p class="btn"><a href="/search">ユーザー検索</a></p>
       </div>
     </div>
+    
     <footer>
     </footer>
 

@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class PostsController extends Controller
 {
     public function index(){
-      $posts = DB::table('posts')->get();
+      $posts = DB::table('posts')
+        ->join('follows','posts.user_id','=','follows.follow')
+        ->where('follows.follower',Auth::id())
+        ->where('posts.user_id',Auth::id())
+        ->get();
       $follows = DB::table('follows')
         ->where('follower',Auth::id())
         ->count();
-        //dd($follows);
       $followers = DB::table('follows')
         ->where('follow',Auth::id())
         ->count();
