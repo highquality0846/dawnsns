@@ -19,7 +19,7 @@
 <div>
 @foreach($images as $image)             <!--【投稿一覧】-->
   <div>
-    <a href="/profile"><img src="/storage/images/{{ $image -> images }}" alt="icon"></a>
+    <a href="/post/{{$image->follow}}/profile"><img src="/storage/images/{{ $image -> images }}" alt="icon"></a>
     {{$image->follow}} <!-- 分かりやすい様にid設置中 -->
     {{$image->username}}
   </div>

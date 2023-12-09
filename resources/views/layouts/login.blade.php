@@ -22,25 +22,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/jquery.js"></script>
 </head>
+
+
 <body>
     <header>
-        <div id = "head">
+      <div id="head">
         <h1><a href="/top"><img src="/images/main_logo.png"></a></h1>
-            <div id="">
-                <div class="user_name">
-                    <p>{{ Auth::user()->username }}さん</p>
-                </div>
-                <div class="ku">
-                  <p><</p>
-                </div>
-                    <img src="storage/images/arrow.png">
-                <div class="menu_item">
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </div>
-           </div>
+        <div class="toggle_menu">
+          <p class="user_name">{{ Auth::user()->username }}さん</p>
+          <!-- <img class="picture_auth" src=  > -->
+          <div class="ku">
+            <p><</p>
+          </div>
+          <div class="menu_item">
+            <li><a href="/top">ホーム</a></li>
+            <li><a href="/profile">プロフィール</a></li>
+            <li><a href="/logout">ログアウト</a></li>
+          </div>
+        </div>
+      </div>
     </header>
+
+
     <div id="row">
       <div id="container">
         @yield('content')

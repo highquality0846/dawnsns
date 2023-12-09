@@ -38,9 +38,11 @@ class RegisterController extends Controller
     protected function validator(array $data)   //　8.7
     {
         $rules = [
-            'username' => 'required | between:4,12',
-            'mail' => 'required|email|between:4,50|unique:users',
-            'password' => 'required|between:4,12|confirmed|alpha_dash|unique:users', 
+            'name' => 'required | between:4,12',
+            'adress' => 'required|email|between:4,50|unique:users',
+            'password' => 'required|between:4,12|confirmed|alpha_dash', 
+            'newpassword' => 'required|between:4,12|confirmed|alpha_dash', 
+
         ];
         $messages = [
             'username.required' => '入力必須です。',
@@ -56,9 +58,7 @@ class RegisterController extends Controller
             'password.unique' => '登録済のパスワードです。',
             'password.confirmed' => '間違えんなよ。。。',
         ];
-        return
-
-        $validator = validator::make($data,$rules,$messages);
+        return $validator = validator::make($data,$rules,$messages);
     }
 
     /**
@@ -87,12 +87,13 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-            $name = $request->input('username'); //ヴァリデータ追加部分
-//ヴァリデータ追加部分
-            $validator=$this->validator($data);
+            $name = $request->input('username'); 
+
+            $validator = $this->validator($data);
               if($validator->fails()){
                 return redirect('/register')->withErrors($validator)
-                ->withInput();}
+                ->withInput();
+            }
 //ここまで
              $this->create($data);
             return redirect('added')->with('name',$name); //ヴァリデータ追加部分
