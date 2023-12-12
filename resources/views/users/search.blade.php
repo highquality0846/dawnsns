@@ -6,7 +6,11 @@
 @csrf                                
   <input type="text" name="search" placeholder="ユーザー名">           
   <button type="submit">検索</button>
+  @if(isset($word))
+    検索ワード：{{$word}}
+  @endif
 </form> 
+
 
 
 @foreach ($users as $user)           

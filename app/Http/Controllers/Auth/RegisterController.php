@@ -35,14 +35,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)   //　8.7
+    protected function validator(array $data)
     {
         $rules = [
-            'name' => 'required | between:4,12',
-            'adress' => 'required|email|between:4,50|unique:users',
+            'username' => 'required | between:4,12',
+            'mail' => 'required|email|between:4,50|unique:users',
             'password' => 'required|between:4,12|confirmed|alpha_dash', 
-            'newpassword' => 'required|between:4,12|confirmed|alpha_dash', 
-
         ];
         $messages = [
             'username.required' => '入力必須です。',
@@ -94,14 +92,17 @@ class RegisterController extends Controller
                 return redirect('/register')->withErrors($validator)
                 ->withInput();
             }
-//ここまで
-             $this->create($data);
-            return redirect('added')->with('name',$name); //ヴァリデータ追加部分
+
+            //  $this->create($data);
+            $request->session()->put('username', $name);
+            return redirect('added');
         }
         return view('auth.register');
     }
 
-    public function added(){
-        return view('auth.added');
+    public function added(Request $request){
+        $username = $request->session()->get('username');
+        $request->session()->forget('username');
+        return view('auth.added',compact('username')); //追加 nameもっていきたい
     }
 }

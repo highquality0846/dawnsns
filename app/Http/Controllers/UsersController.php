@@ -32,7 +32,7 @@ class UsersController extends Controller
 
 
     public function search(Request $request){               //【検索機能】
-      $word = $request->input('search');                  //formのname属性=search
+      $word = $request->input('search');
       if (isset($request->search)) {                        
         $users = DB::table('users')
           ->where('id', '<>', Auth::id())                   //ログイン中のid以外

@@ -15,6 +15,7 @@ class PostsController extends Controller
         ->where('follows.follower',Auth::id())
         ->orWhere('posts.user_id',Auth::id())
         ->select('users.username', 'users.images', 'posts.*')
+        ->orderby('posts','desc')
         ->get();
         // dd($posts);
       $follows = DB::table('follows')

@@ -51,3 +51,8 @@ Route::post('post/{id}/update','PostsController@update');     //update処理
 
 Route::post('/add-follow','UsersController@follow');           //フォロー
 Route::post('/delete','UsersController@delete');               //フォロー解除
+
+
+
+
+Route::get('/test','UsersController@search');
