@@ -54,7 +54,8 @@ class PostsController extends Controller
         ->update([
           'posts' => $request->update_text,       
           'updated_at' => now()                    
-        ]);                           
+        ]);
+        dd($id);                           
       return redirect('/top');                 
     }
 

@@ -55,4 +55,4 @@ Route::post('/delete','UsersController@delete');               //フォロー解
 
 
 
-Route::get('/test','UsersController@search');
+Route::get('/test','TestController@test');

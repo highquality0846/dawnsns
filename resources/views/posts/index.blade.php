@@ -20,7 +20,7 @@
       {{ $post->posts }}
       {{ $post->created_at }}
     </div>
-    @if( Auth::id() === $post ->user_id)
+  @if( Auth::id() === $post ->user_id)
     <div class="modal-open" data-target="modal{{$post->id}}">  <!-- OPEN data"target" -->
       <img src="/images/edit.png" alt="鉛筆画像">
     </div>
