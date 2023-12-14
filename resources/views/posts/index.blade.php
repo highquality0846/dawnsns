@@ -42,11 +42,5 @@
     @endif
   @endforeach
 
-
-  
-  <div>
-  <a href="/test">テストページ</a>
-  </div>
-
 @endsection
 

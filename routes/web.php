@@ -28,31 +28,23 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
 
-
-//ログイン中のページ
 Route::get('/top','PostsController@index');
-//ログアウト処理
 Route::get('/logout','Auth\LoginController@logout');
 
-Route::get('/profile','ProfileController@profile');            //Profile
+Route::get('/profile','ProfileController@profile');
 Route::post('/update','ProfileController@update');
-Route::get('post/{id}/profile','UsersController@profile');   //otherProfile
+Route::get('post/{id}/profile','UsersController@profile');
 
-Route::get('/search','UsersController@search');              //ユーザー検索ボタンでsearch.blade.phpへ
-Route::post('/search','UsersController@search');             //user検索ボタンを押下する→UsersController@search
+Route::get('/search','UsersController@search');
+Route::post('/search','UsersController@search');
 
-Route::get('/follow-list','followsController@followList');    //フォローリストへ
-Route::get('/follower-list','followsController@followerList'); //フォロワーリストへ
+Route::get('/follow-list','followsController@followList');
+Route::get('/follower-list','followsController@followerList');
 
 Route::post('/tweet','PostsController@tweet');
 
-Route::get('post/{id}/delete','PostsController@delete');      //delate処理
-Route::post('post/{id}/update','PostsController@update');     //update処理      
+Route::get('post/{id}/delete','PostsController@delete');
+Route::post('post/{id}/update','PostsController@update');
 
-Route::post('/add-follow','UsersController@follow');           //フォロー
-Route::post('/delete','UsersController@delete');               //フォロー解除
-
-
-
-
-Route::get('/test','TestController@test');
+Route::post('/add-follow','UsersController@follow');
+Route::post('/delete','UsersController@delete');
